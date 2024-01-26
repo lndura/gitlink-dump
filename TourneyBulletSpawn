@@ -1,110 +1,32 @@
-function()
-   if Index > #Coords then
-      Index = 1
-   end
+{
+{122.70301818848,-310.55718994141}, -- a
+{125.29661560059,-311.69952392578}, -- a
+{127.89958190918,-313.20483398438}, -- a
+{130.50283813477,-314.38674926758}, -- a
 
-   local BulletAssemble = ([[
-      alloc(SpawnBullet,128,DarkSoulsIII.exe)
-      registerSymbol(SpawnBullet)
-      alloc(BulletData,512)
 
-      BulletData+0:
-      dd 10068000
+{121.27786254883,-313.46173095703}, -- a
+{124.02039337158,-314.74118041992}, -- a
+{126.58109283447,-316.03414916992}, -- a
+{129.14614868164,-317.26699829102}, -- a
 
-      BulletData+4:
-      dd FFFFFFFF
+{119.65824890137,-316.36962890625}, -- a
+{122.496925354,-317.72015380859}, -- a
+{124.88471221924,-319.05868530273}, -- a
+{127.25812530518,-320.38027954102}, -- a
 
-      BulletData+8:
-      dd 0
+{118.40249633789,-319.34750366211}, -- a
+{121.38135528564,-320.46981811523}, -- a
+{123.70909881592,-322.01223754883}, -- a
+{126.2689743042,-323.18884277344}, -- a
 
-      BulletData+10:
-      dd ]]..string.format("%X",BulletId)..[[
+{117.05754852295,-322.23004150391}, -- a
+{119.69590759277,-323.44897460938}, -- a
+{122.33516693115,-324.61999511719}, -- a
+{125.08480834961,-325.86328125}, -- a
 
-      BulletData+14:
-      dd 0
-
-      BulletData+1C:
-      dd FFFFFFFF
-
-      BulletData+20:
-      dd FFFFFFFF
-
-      BulletData+24:
-      dd FFFFFFFF
-
-      BulletData+28:
-      dd (float)0
-
-      BulletData+2C:
-      dd (float)0
-
-      BulletData+30:
-      dd (float)1.700000048
-
-      BulletData+34:
-      dd (float)1.909999967
-
-      BulletData+38:
-      dd 0
-
-      BulletData+3C:
-      dd 7FE9
-
-      BulletData+40:
-      dd (float)0
-
-      BulletData+50:
-      dd (float)0
-
-      BulletData+60:
-      dd (float)0
-
-      BulletData+44:
-      dd (float)0
-
-      BulletData+54:
-      dd (float)0
-
-      BulletData+64:
-      dd (float)0
-
-      BulletData+48:
-      dd (float)0
-
-      BulletData+58:
-      dd (float)0
-
-      BulletData+68:
-      dd (float)0
-
-      BulletData+4C:
-      dd (float)]].. Coords[Index][1] ..[[
-
-      BulletData+5C:
-      dd (float)]].. CoordsY ..[[
-
-      BulletData+6C:
-      dd (float)]].. Coords[Index][2] ..[[
-
-      SpawnBullet:
-         mov   rcx, [SprjBulletManager]
-         lea   rdi,  [BulletData]
-         sub   rsp, 198
-         mov   r8, rdi
-         lea   rdx, [rsp+30]
-         call  DarkSoulsIII.exe+980f60
-         add   rsp, 198
-         ret
-
-      createthread(SpawnBullet)
-
-      dealloc(BulletData)
-      dealloc(SpawnBullet)
-      unregisterSymbol(SpawnBullet)
-   ]])
-
-   BulletId = Bullet[1]
-   autoAssemble(BulletAssemble)
-
-   Index = Index + 1  -- Move to the next index
-end
+{115.6604309082,-325.03762817383}, -- a
+{118.31159210205,-326.30703735352}, -- a
+{120.97193145752,-327.60333251953}, -- a
+{123.53884124756,-328.79769897461}, -- a
+}
