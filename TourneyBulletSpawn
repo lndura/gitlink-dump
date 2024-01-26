@@ -1,1 +1,110 @@
-c-oDW-D:w}6vvNZvu1$}2D#aG/H0?;YKrVSj:igR=FxbI${k3^7fPaJ;6_#(?_xYb8+C4-SJ.bWkF{dlt]n;#g6M#eEd9/oI^NrOd!LaIp8P(,JZ/Q8y/T5[gvwgiJp;x;O!%k6qsP2=fO-%F06%Yf?N3o6RtN#q0RG)MXcZLw9D=r%?+1GkU.eM/D9}zf8T[cd2mrl.93B=o4oSx1AWi9P5Ygs8/IYGF#lu#)AlLJ@Srk!bTDE7Nk;pDlXHnYk[mAn4wi[j#)8*AqGzq]W25{[1ZHO^nId):EF+{ysZmcJ).UoNJJvJH^7RIiJF[vJCfSs;Rf[VZa3uB4t@n.Wo*A;X^7^_$sFkO53sd?WcD}}_p=Cgtvs/uiSD^[ie,hW/RaTF8QmaWe_RpU/ZE?vHg?trxI%*@m,[{DMZ=aDm%9o31r+zWl_Uv=_7T0tE{(Q.[bM:]G::PGiJ.z4(5IaiT$Bo^{2Ey:6Mxe}5/o1uFzPY^)2(21KcE%ax(G;waJkzAF*2QnuUnp^;}L]lJorlw)BRH,3b%=1ULE:/Gny]2o6S$OXTEE01k^z!yaLoRoQv8_RzzK6#yt{w#Om8DE5,wA%/p?dQPnKz@Ry1Lmhx-G5ktr;_LXY*OZjX-Aq0mzq_Lj
+function Spawn()
+   if Index > #Coords then
+      Index = 1
+   end
+
+   local BulletAssemble = ([[
+      alloc(SpawnBullet,128,DarkSoulsIII.exe)
+      registerSymbol(SpawnBullet)
+      alloc(BulletData,512)
+
+      BulletData+0:
+      dd 10068000
+
+      BulletData+4:
+      dd FFFFFFFF
+
+      BulletData+8:
+      dd 0
+
+      BulletData+10:
+      dd ]]..string.format("%X",BulletId)..[[
+
+      BulletData+14:
+      dd 0
+
+      BulletData+1C:
+      dd FFFFFFFF
+
+      BulletData+20:
+      dd FFFFFFFF
+
+      BulletData+24:
+      dd FFFFFFFF
+
+      BulletData+28:
+      dd (float)0
+
+      BulletData+2C:
+      dd (float)0
+
+      BulletData+30:
+      dd (float)1.700000048
+
+      BulletData+34:
+      dd (float)1.909999967
+
+      BulletData+38:
+      dd 0
+
+      BulletData+3C:
+      dd 7FE9
+
+      BulletData+40:
+      dd (float)0
+
+      BulletData+50:
+      dd (float)0
+
+      BulletData+60:
+      dd (float)0
+
+      BulletData+44:
+      dd (float)0
+
+      BulletData+54:
+      dd (float)0
+
+      BulletData+64:
+      dd (float)0
+
+      BulletData+48:
+      dd (float)0
+
+      BulletData+58:
+      dd (float)0
+
+      BulletData+68:
+      dd (float)0
+
+      BulletData+4C:
+      dd (float)]].. Coords[Index][1] ..[[
+
+      BulletData+5C:
+      dd (float)]].. CoordsY ..[[
+
+      BulletData+6C:
+      dd (float)]].. Coords[Index][2] ..[[
+
+      SpawnBullet:
+         mov   rcx, [SprjBulletManager]
+         lea   rdi,  [BulletData]
+         sub   rsp, 198
+         mov   r8, rdi
+         lea   rdx, [rsp+30]
+         call  DarkSoulsIII.exe+980f60
+         add   rsp, 198
+         ret
+
+      createthread(SpawnBullet)
+
+      dealloc(BulletData)
+      dealloc(SpawnBullet)
+      unregisterSymbol(SpawnBullet)
+   ]])
+
+   BulletId = Bullet[1]
+   autoAssemble(BulletAssemble)
+
+   Index = Index + 1  -- Move to the next index
+end
