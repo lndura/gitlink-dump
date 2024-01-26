@@ -1,0 +1,99 @@
+[[
+      alloc(SpawnBullet,128,DarkSoulsIII.exe)
+      registerSymbol(SpawnBullet)
+      alloc(BulletData,512)
+
+      BulletData+0:
+      dd 10068000
+
+      BulletData+4:
+      dd FFFFFFFF
+
+      BulletData+8:
+      dd 0
+
+      BulletData+10:
+      dd ]].. string.format("%X", id) ..[[
+
+      BulletData+14:
+      dd 0
+
+      BulletData+1C:
+      dd FFFFFFFF
+
+      BulletData+20:
+      dd FFFFFFFF
+
+      BulletData+24:
+      dd FFFFFFFF
+
+      BulletData+28:
+      dd (float)0
+
+      BulletData+2C:
+      dd (float)0
+
+      BulletData+30:
+      dd (float)1.700000048
+
+      BulletData+34:
+      dd (float)1.909999967
+
+      BulletData+38:
+      dd 0
+
+      BulletData+3C:
+      dd 7FE9
+
+      BulletData+40:
+      dd (float)0
+
+      BulletData+50:
+      dd (float)0
+
+      BulletData+60:
+      dd (float)0
+
+      BulletData+44:
+      dd (float)0
+
+      BulletData+54:
+      dd (float)0
+
+      BulletData+64:
+      dd (float)0
+
+      BulletData+48:
+      dd (float)0
+
+      BulletData+58:
+      dd (float)0
+
+      BulletData+68:
+      dd (float)0
+
+      BulletData+4C:
+      dd (float)]].. x ..[[
+
+      BulletData+5C:
+      dd (float)]].. z ..[[
+
+      BulletData+6C:
+      dd (float)]].. y ..[[
+
+      SpawnBullet:
+         mov   rcx, [SprjBulletManager]
+         lea   rdi,  [BulletData]
+         sub   rsp, 198
+         mov   r8, rdi
+         lea   rdx, [rsp+30]
+         call  DarkSoulsIII.exe+980f60
+         add   rsp, 198
+         ret
+
+      createthread(SpawnBullet)
+
+      dealloc(BulletData)
+      dealloc(SpawnBullet)
+      unregisterSymbol(SpawnBullet)
+   ]]
