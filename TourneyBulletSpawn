@@ -1,4 +1,4 @@
-function Spawn()
+function()
    if Index > #Coords then
       Index = 1
    end
